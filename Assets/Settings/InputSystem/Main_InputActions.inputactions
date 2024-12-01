@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "a4800d7a-9e00-4780-910a-4f5f8e35b197",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "542e7c66-b0e4-4049-b128-aed07c135b5a",
@@ -108,7 +117,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Arrows",
+                    "name": "Arrow Keys",
                     "id": "1af6c08a-e122-42de-890c-d46ce6660ee8",
                     "path": "2DVector",
                     "interactions": "",
@@ -258,6 +267,28 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ad2d441-38fd-4b5e-89eb-0c98c93a7fd5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6d906ad-598e-451a-b26a-feeca1ac3957",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
