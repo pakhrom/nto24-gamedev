@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,11 +18,18 @@ namespace Code.Scripts
         {
             _controller = GetComponent<Controller2D>();
         }
+
+        private void Update()
+        {
+            if (_isShootingButtonPressed) _controller.Shoot();
+        }
+
         public void Movement(InputAction.CallbackContext context)
         {
             var movementDirection = context.ReadValue<Vector2>();
             _controller.SetMovementDirection(movementDirection);
         }
+        
         public void Jump(InputAction.CallbackContext context)
         {
             if (context.performed)
@@ -40,8 +48,6 @@ namespace Code.Scripts
             if (context.performed)
             {
                 _isShootingButtonPressed = true;
-
-                StartCoroutine(_controller.Shoot());
             }
             if (context.canceled)
             {

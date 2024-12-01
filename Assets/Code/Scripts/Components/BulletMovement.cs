@@ -15,7 +15,6 @@ namespace Code.Scripts.Components
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            Debug.Log(other);
             if (other.gameObject.CompareTag(_bulletBoundingBoxTag))
             {
                 Destroy(gameObject);

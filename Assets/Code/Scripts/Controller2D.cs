@@ -31,6 +31,8 @@ namespace Code.Scripts
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private Transform _shootPosition;
         [SerializeField] private float _shootDelay;
+
+        private float _shootTimer = 0f;
         
         private bool _isDashing;
         private bool _dashAvailable;
@@ -68,6 +70,7 @@ namespace Code.Scripts
             }
 
             _jumpBufferCounter -= Time.deltaTime;
+            _shootTimer += Time.deltaTime;
         }
 
         private void FixedUpdate()
@@ -112,11 +115,10 @@ namespace Code.Scripts
         {
             _coyoteTimeCounter = 0f;
             if (!_isSideOn) return;
-            if (!_groundCheck.IsGrounded() && _rigidbody.linearVelocity.y > 0f)
-            {
-                Vector2 velocity = _rigidbody.linearVelocity;
-                _rigidbody.linearVelocity = new Vector2(velocity.x, velocity.y * _jumpCancelMultiplier);
-            }
+            
+            if (_groundCheck.IsGrounded() || !(_rigidbody.linearVelocity.y > 0f)) return;
+            Vector2 velocity = _rigidbody.linearVelocity;
+            _rigidbody.linearVelocity = new Vector2(velocity.x, velocity.y * _jumpCancelMultiplier);
         }
 
         private void FloatMidAir()
@@ -127,15 +129,24 @@ namespace Code.Scripts
             }
         }
 
-        public IEnumerator Shoot() // BUG: You can bypass shooting delay by spamming the shoot action button
+        public void Shoot()
         {
-            if (!_canShoot) yield break;
-            while (_input.IsShootingButtonPressed)
-            {
-                Instantiate(_bulletPrefab, _shootPosition.position, _shootPosition.rotation);
-                yield return new WaitForSeconds(_shootDelay);
-            }
+            if (!_canShoot) return;
+            
+            if (!(_shootTimer >= _shootDelay) || !_input.IsShootingButtonPressed) return;
+            Instantiate(_bulletPrefab, _shootPosition.position, _shootPosition.rotation);
+            _shootTimer = 0;
         }
+        
+        // public IEnumerator Shoot()
+        // {
+        //     if (!_canShoot) yield break;
+        //     while (_input.IsShootingButtonPressed)
+        //     {
+        //         Instantiate(_bulletPrefab, _shootPosition.position, _shootPosition.rotation);
+        //         yield return new WaitForSeconds(_shootDelay);
+        //     }
+        // }
 
         public IEnumerator Dash()
         {
