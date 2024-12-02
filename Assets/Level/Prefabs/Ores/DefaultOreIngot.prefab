@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2093068717727249656}
   - component: {fileID: 3516215661729608632}
   - component: {fileID: 8840584668608988281}
-  - component: {fileID: 8024053886565691858}
+  - component: {fileID: -3656578040255248992}
   m_Layer: 0
   m_Name: DefaultOreIngot
   m_TagString: Untagged
@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -116,7 +116,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &8024053886565691858
+--- !u!60 &-3656578040255248992
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,7 +126,7 @@ PolygonCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bd5fc282aaae1b147b883807cf1aca71, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
