@@ -139,3 +139,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 20
   _bulletBoundingBoxTag: BulletBoundingBox
+  _oreObjectsTag: Ore
+  _solidObjectsLayer: Solid

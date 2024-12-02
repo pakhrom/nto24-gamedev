@@ -1,8 +1,7 @@
+using System;
 using System.Collections;
 using Code.Scripts.Components;
 using UnityEngine;
-
-// ReSharper disable InconsistentNaming
 
 namespace Code.Scripts
 {
@@ -27,18 +26,44 @@ namespace Code.Scripts
         [SerializeField] private float _dashTime;
         [SerializeField] private float _dashCooldown;
 
+        [Header("Animations")] 
+        [SerializeField] private string _beginRunTrigger;
+        [SerializeField] private string _changeItemTrigger;
+        [SerializeField] private string _activeItemIntProperty;
+        [Tooltip("Must be equal to the ChangeItem animation duration")]
+        [SerializeField] private float _changeItemDuration;
+
         [Header("Shooting Settings")] 
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private Transform _shootPosition;
         [SerializeField] private float _shootDelay;
 
-        private float _shootTimer = 0f;
+        [Header("Mining tools Settings")] 
+        [SerializeField] private MiningTool _miningTool;
+        [SerializeField] private float _mineDelay;
+
+        [Header("Weapon Settings")] 
+        [SerializeField] private Weapon _weapon;
+
+        private enum Items
+        {
+            MiningTool,
+            Weapon
+        }
+
+        private Items _activeItem;
+
+        private float _changeItemTimer;
+        private float _shootTimer;
+        private float _mineTimer;
         
         private bool _isDashing;
         private bool _dashAvailable;
 
         private Rigidbody2D _rigidbody;
         private float _defaultGravityScale;
+
+        private Animator _animator;
         
         private Vector2 _movementDirection;
 
@@ -48,6 +73,8 @@ namespace Code.Scripts
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
+            
             if (!_isSideOn)
             {
                 _rigidbody.gravityScale = 0f;
@@ -56,8 +83,15 @@ namespace Code.Scripts
 
             _isDashing = false;
             _dashAvailable = true;
-        }
 
+            _shootTimer = _shootDelay;
+            _mineTimer = _mineDelay;
+            _changeItemTimer = _changeItemDuration;
+
+            _animator.SetInteger(_activeItemIntProperty, 0);
+            _animator.SetTrigger(_beginRunTrigger);
+        }
+        
         private void Update()
         {
             if (_groundCheck.IsGrounded())
@@ -70,7 +104,14 @@ namespace Code.Scripts
             }
 
             _jumpBufferCounter -= Time.deltaTime;
+            _changeItemTimer += Time.deltaTime;
             _shootTimer += Time.deltaTime;
+            _mineTimer += Time.deltaTime;
+
+            _jumpBufferCounter = Mathf.Min(_jumpBufferCounter, _jumpBufferTime + 10f);
+            _changeItemTimer = Mathf.Min(_changeItemTimer, _changeItemDuration + 10f);
+            _shootTimer = Mathf.Min(_shootTimer, _shootDelay + 10f);
+            _mineTimer = Mathf.Min(_mineTimer, _mineDelay + 10f);
         }
 
         private void FixedUpdate()
@@ -121,6 +162,31 @@ namespace Code.Scripts
             _rigidbody.linearVelocity = new Vector2(velocity.x, velocity.y * _jumpCancelMultiplier);
         }
 
+        private void ChangeActiveItem(Items item)
+        {
+            if (_activeItem == item) return;
+            
+            switch (item)
+            {
+                case Items.MiningTool:
+                    _activeItem = Items.MiningTool;
+                    
+                    _animator.SetInteger(_activeItemIntProperty, 0);
+                    _animator.SetTrigger(_changeItemTrigger);
+                    break;
+                case Items.Weapon:
+                    _activeItem = Items.Weapon;
+                    
+                    _animator.SetInteger(_activeItemIntProperty, 1);
+                    _animator.SetTrigger(_changeItemTrigger);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            _changeItemTimer = 0f;
+        }
+
         private void FloatMidAir()
         {
             if (_canFloat && _input.IsJumpButtonPressed && !_groundCheck.IsGrounded() && _rigidbody.linearVelocity.y < 0)
@@ -131,22 +197,33 @@ namespace Code.Scripts
 
         public void Shoot()
         {
+            if (_activeItem != Items.Weapon)
+            {
+                ChangeActiveItem(Items.Weapon);
+                return;
+            }
+            
             if (!_canShoot) return;
             
-            if (!(_shootTimer >= _shootDelay) || !_input.IsShootingButtonPressed) return;
-            Instantiate(_bulletPrefab, _shootPosition.position, _shootPosition.rotation);
-            _shootTimer = 0;
+            if (!(_changeItemTimer >= _changeItemDuration) || !(_shootTimer >= _shootDelay) || !_input.IsShootingButtonPressed) return;
+            Instantiate(_bulletPrefab, _shootPosition.position,
+                Quaternion.Euler(_shootPosition.eulerAngles +
+                                 new Vector3(0, 0, 90))); // BUG: Change this when changing rotation of ShootingPosition
+            _shootTimer = 0f;
         }
-        
-        // public IEnumerator Shoot()
-        // {
-        //     if (!_canShoot) yield break;
-        //     while (_input.IsShootingButtonPressed)
-        //     {
-        //         Instantiate(_bulletPrefab, _shootPosition.position, _shootPosition.rotation);
-        //         yield return new WaitForSeconds(_shootDelay);
-        //     }
-        // }
+
+        public void Mine()
+        {
+            if (_activeItem != Items.MiningTool)
+            {
+                ChangeActiveItem(Items.MiningTool);
+                return;
+            }
+            
+            if (!(_changeItemTimer >= _changeItemDuration) || !(_mineTimer >= _mineDelay) || !_input.IsMiningButtonPressed) return;
+            _miningTool.Mine();
+            _mineTimer = 0f;
+        }
 
         public IEnumerator Dash()
         {

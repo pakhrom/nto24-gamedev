@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +5,7 @@ namespace Code.Scripts.Components
 {
     public class PointAtMouse : MonoBehaviour
     {
-        [SerializeField] private float _rotationSpeed;
+        // [SerializeField] private float _rotationSpeed; TODO: Implement this.
         [SerializeField] private string _pointActionName;
         
         private InputAction _pointAction;
@@ -32,10 +31,6 @@ namespace Code.Scripts.Components
                 + new Vector3(0, 0, 10);
 
             transform.right = mouseWorldPosition - transform.position;
-            
-            // Vector3 diff = (mouseWorldPosition - transform.position).normalized;
-            // float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-            // transform.rotation = Quaternion.Euler(0f, 0f, rotationZ - 90);
         }
     }
 }
