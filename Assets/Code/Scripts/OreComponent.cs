@@ -69,6 +69,7 @@ namespace Code.Scripts
             }
             else
             {
+                _miningProgressSlider.interactable = false;
                 _miningProgressSlider.value = 1;
             }
         }
