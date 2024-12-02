@@ -26,7 +26,9 @@ namespace Code.Scripts
         [SerializeField] private float _dashTime;
         [SerializeField] private float _dashCooldown;
 
-        [Header("Animations")] 
+        [Header("Animations")]
+        [SerializeField] private Transform _miningToolPivot;
+        [SerializeField] private Transform _weaponPivot;
         [SerializeField] private string _beginRunTrigger;
         [SerializeField] private string _changeItemTrigger;
         [SerializeField] private string _activeItemIntProperty;

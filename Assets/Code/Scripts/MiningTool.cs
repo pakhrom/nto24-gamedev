@@ -1,3 +1,4 @@
+using Code.Scripts.Components;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -24,7 +25,7 @@ namespace Code.Scripts
         private Animator _animator;
         private BoxCollider2D _toolShortRangeArea;
 
-        private bool _isHittingOre;
+        private OreComponent _ore;
 
         private void Start()
         {
@@ -39,18 +40,18 @@ namespace Code.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(_oreTag))
-            {
-                _isHittingOre = true;
-            }
+            if (!other.gameObject.CompareTag(_oreTag)) return;
+            
+            _ore = other.gameObject.GetComponent<OreComponent>();
+            _ore.SwitchSlider();
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(_oreTag))
-            {
-                _isHittingOre = false; // BUG: Possible edge-case
-            }
+            if (!other.gameObject.CompareTag(_oreTag)) return;
+            
+            _ore.SwitchSlider();
+            _ore = null;
         }
 
         public void Mine()
@@ -65,9 +66,9 @@ namespace Code.Scripts
         {
             // TODO: Deal damage
 
-            if (_isHittingOre)
+            if (_ore)
             {
-                Debug.Log("Ore hit!");
+                _ore.DealDamage(_damage);
             }
         }
     }
