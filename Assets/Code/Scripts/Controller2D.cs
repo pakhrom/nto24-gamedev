@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Code.Scripts.Components;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -110,7 +109,7 @@ namespace Code.Scripts
             _shootTimer += Time.deltaTime;
             _mineTimer += Time.deltaTime;
 
-            _jumpBufferCounter = Mathf.Min(_jumpBufferCounter, _jumpBufferTime + 10f);
+            _jumpBufferCounter = Mathf.Max(_jumpBufferCounter, -10f);
             _changeItemTimer = Mathf.Min(_changeItemTimer, _changeItemDuration + 10f);
             _shootTimer = Mathf.Min(_shootTimer, _shootDelay + 10f);
             _mineTimer = Mathf.Min(_mineTimer, _mineDelay + 10f);
