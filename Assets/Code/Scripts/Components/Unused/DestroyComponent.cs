@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Code.Scripts.Components
+namespace Code.Scripts.Components.Unused
 {
     public class DestroyComponent : MonoBehaviour
     {

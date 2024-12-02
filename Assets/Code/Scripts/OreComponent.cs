@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace Code.Scripts.Components
+namespace Code.Scripts
 {
     [RequireComponent(typeof(Collider2D))]
     

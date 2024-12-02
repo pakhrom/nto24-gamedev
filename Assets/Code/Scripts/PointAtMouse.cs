@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Code.Scripts.Components
+namespace Code.Scripts
 {
     public class PointAtMouse : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.Scripts.Components
+namespace Code.Scripts
 {
     public class GroundCheck : MonoBehaviour
     {

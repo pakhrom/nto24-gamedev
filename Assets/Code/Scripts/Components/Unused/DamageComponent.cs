@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Code.Scripts.Components
+namespace Code.Scripts.Components.Unused
 {
     public class DamageComponent : MonoBehaviour
     {
