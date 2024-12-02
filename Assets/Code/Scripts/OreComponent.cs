@@ -40,7 +40,7 @@ namespace Code.Scripts
 
             if (_damageCounter >= _oreDropThreshold)
             {
-                int drops = (int)(_damageCounter / _oreDropThreshold);
+                int drops = (int)Mathf.Floor(_damageCounter / _oreDropThreshold);
                 DropOre(drops);
                 _damageCounter %= _oreDropThreshold;
             }
@@ -57,8 +57,9 @@ namespace Code.Scripts
                 {
                     Instantiate(_oreIngotPrefab, _oreDropPosition);
                 }
-                _dropCount -= 1;
             }
+
+            _dropCount -= Math.Min(drops, _dropCount);
         }
 
         private void UpdateSlider()
