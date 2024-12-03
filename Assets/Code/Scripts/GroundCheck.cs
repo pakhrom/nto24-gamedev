@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Code.Scripts
@@ -8,7 +7,9 @@ namespace Code.Scripts
         // [SerializeField] private LayerMask _layer;
         // [SerializeField] private float _threshold;
 
-        public bool isGrounded;
+        [SerializeField] private string _bulletObjectsTag;
+
+        private bool _isGrounded;
         
         // private Collider2D _collider;
 
@@ -20,17 +21,19 @@ namespace Code.Scripts
         {
             // RaycastHit2D boxCast = Physics2D.BoxCast(_collider.bounds.center, _collider.bounds.size * 1,0f,Vector2.down,  _threshold, _layer);
             // return boxCast.collider;
-            return isGrounded;
+            return _isGrounded;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            isGrounded = true;
+            if (other.gameObject.CompareTag(_bulletObjectsTag)) return;
+            _isGrounded = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            isGrounded = false;
+            if (other.gameObject.CompareTag(_bulletObjectsTag)) return;
+            _isGrounded = false;
         }
     }
 }

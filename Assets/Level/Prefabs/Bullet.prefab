@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 134299092668937261}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,4 +140,3 @@ MonoBehaviour:
   _speed: 20
   _bulletBoundingBoxTag: BulletBoundingBox
   _oreObjectsTag: Ore
-  _solidObjectsLayer: Solid
