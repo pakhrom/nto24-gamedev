@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7194626908577851964, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _bulletObjectsTag
+      value: Bullet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

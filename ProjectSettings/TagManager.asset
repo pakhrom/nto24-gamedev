@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BulletBoundingBox
   - Ore
+  - Bullet
   layers:
   - Default
   - TransparentFX
