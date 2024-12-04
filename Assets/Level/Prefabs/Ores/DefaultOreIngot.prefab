@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3516215661729608632}
   - component: {fileID: 8840584668608988281}
   - component: {fileID: -3656578040255248992}
+  - component: {fileID: 8685332861637377242}
   m_Layer: 0
   m_Name: DefaultOreIngot
   m_TagString: Untagged
@@ -169,3 +170,16 @@ PolygonCollider2D:
       - {x: 0.5, y: 0}
       - {x: 0.25, y: 0.43359375}
   m_UseDelaunayMesh: 0
+--- !u!114 &8685332861637377242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5981964462025976705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425542508e47d6e4e942f626185cca67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ore: {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}

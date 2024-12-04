@@ -4,6 +4,6 @@ namespace Code.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        // Currently in Controller2D
+        // Nothing for now
     }
 }

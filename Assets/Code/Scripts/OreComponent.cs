@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -13,15 +14,11 @@ namespace Code.Scripts
         [SerializeField] private Slider _miningProgressSlider;
 
         [Header("Ore properties")] 
+        [SerializeField] private Ore _ore;
         [SerializeField] private Transform _oreDropPosition;
-        [SerializeField] private GameObject _oreIngotPrefab;
-        [Tooltip("How many hits until drop")]
-        [SerializeField] private float _oreDropThreshold;
-        [SerializeField] private int _minDropCount;
-        [SerializeField] private int _maxDropCount;
-        [SerializeField] private int _minOrePerDrop;
-        [SerializeField] private int _maxOrePerDrop;
 
+        private float _oreDropThreshold;
+        
         private float _damageCounter;
         private int _dropCount;
         
@@ -31,7 +28,8 @@ namespace Code.Scripts
         {
             _miningProgressCanvas.enabled = false;
 
-            _dropCount = Random.Range(_minDropCount, _maxDropCount + 1);
+            _oreDropThreshold = Random.Range(_ore.minOreDropThreshold, _ore.maxOreDropThreshold);
+            _dropCount = Random.Range(_ore.minDropCount, _ore.maxDropCount + 1);
         }
 
         public void DealDamage(float damage)
@@ -52,10 +50,10 @@ namespace Code.Scripts
         {
             for (int i = 0; i < Math.Min(drops, _dropCount); ++i)
             {
-                int oreAmount = Random.Range(_minOrePerDrop, _maxOrePerDrop + 1);
+                int oreAmount = Random.Range(_ore.minOrePerDrop, _ore.maxOrePerDrop + 1);
                 for (int j = 0; j < oreAmount; ++j)
                 {
-                    Instantiate(_oreIngotPrefab, _oreDropPosition);
+                    Instantiate(_ore.ingotPrefab, _oreDropPosition);
                 }
             }
 

@@ -71,11 +71,14 @@ namespace Code.Scripts
         private float _coyoteTimeCounter;
         private float _jumpBufferCounter;
 
+        private Inventory _inventory;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
-            
+            _inventory = GetComponent<Inventory>();
+
             if (!_isSideOn)
             {
                 _rigidbody.gravityScale = 0f;
@@ -91,6 +94,11 @@ namespace Code.Scripts
 
             _animator.SetInteger(_activeItemIntProperty, 0);
             _animator.SetTrigger(_beginRunTrigger);
+        }
+
+        private void Start()
+        {
+            _rigidbody.simulated = true;
         }
         
         private void Update()
@@ -126,6 +134,12 @@ namespace Code.Scripts
             }
         }
 
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (!other.gameObject.TryGetComponent(out OreIngot oreIngot)) return;
+            _inventory.AddOre(oreIngot, 1);
+        }
+
         private void ProcessMovement()
         {
             if (_isDashing) return;
@@ -139,6 +153,12 @@ namespace Code.Scripts
         public void SetMovementDirection(Vector2 direction)
         {
             _movementDirection = direction;
+            _miningTool.transform.localScale = _movementDirection.x switch
+            {
+                > 0f => new Vector3(1f, transform.localScale.y, transform.localScale.z),
+                < 0f => new Vector3(-1f, transform.localScale.y, transform.localScale.z),
+                _ => _miningTool.transform.localScale
+            };
         }
 
         public void Jump()
@@ -165,7 +185,7 @@ namespace Code.Scripts
 
         private void ChangeActiveItem(Items item)
         {
-            if (_activeItem == item) return;
+            if (_activeItem == item || _changeItemTimer < _changeItemDuration) return;
             
             switch (item)
             {
