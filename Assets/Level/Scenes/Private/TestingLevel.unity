@@ -1901,6 +1901,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7194626908577851964, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _solidTag
+      value: Solid
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194626908577851964, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: _bulletObjectsTag
       value: Bullet
       objectReference: {fileID: 0}
