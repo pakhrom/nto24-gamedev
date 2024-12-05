@@ -18,6 +18,6 @@ MonoBehaviour:
   health: 100
   movementSpeed: 3
   miningToolDamage: 1
-  currentPlanet: {fileID: 0}
+  currentPlanet: {fileID: 11400000, guid: 205ba4cd8c2261f43a5f920bc56485bb, type: 2}
   shootDelay: 0.35
   fuelCapacity: 200

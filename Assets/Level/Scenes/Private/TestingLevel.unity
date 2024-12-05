@@ -415,6 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7a8a9e494b09d438bc3a775f0e1a6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _saveManager: {fileID: 0}
   _player: {fileID: 1478240274}
   _weapon: {fileID: 610565569}
   _weaponPointer: {fileID: 443078705}
@@ -1058,6 +1059,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262477128}
   m_CullTransparentMesh: 1
+--- !u!1 &1287003546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287003548}
+  - component: {fileID: 1287003547}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1287003547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287003546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19952037e205874ba1d55e71a50d016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultSaveData: {fileID: 11400000, guid: 3b13894a320bd3c4d9daab2538bf43e6, type: 2}
+--- !u!4 &1287003548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287003546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294686815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1927,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3600615409682872197, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _saveManager
+      value: 
+      objectReference: {fileID: 1287003547}
+    - target: {fileID: 3600615409682872197, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: _cameraFollower
       value: 
       objectReference: {fileID: 675678358}
@@ -1930,6 +1980,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 675678356}
+  - {fileID: 1287003548}
   - {fileID: 50628888}
   - {fileID: 656635780}
   - {fileID: 7023740261040950508}

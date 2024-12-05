@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Nickel
   value: 0
-  orePrefab: {fileID: 0}
-  ingotPrefab: {fileID: 5981964462025976705, guid: 081f44dd58b04294e8b28fac580e0f86, type: 3}
+  orePrefab: {fileID: 4304232938265903857, guid: 8c68d83fc66717c46aeb40e4b39363ca, type: 3}
+  ingotPrefab: {fileID: 5981964462025976705, guid: 28719e0fd936d9445a931026c0b0663f, type: 3}
   minOreDropThreshold: 0
   maxOreDropThreshold: 0
   minDropCount: 0

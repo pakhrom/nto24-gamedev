@@ -16,7 +16,11 @@ MonoBehaviour:
   id: 1
   size: 0
   sprite: {fileID: 0}
-  ores: []
+  ores:
+  - {fileID: 11400000, guid: 114935f70a659f649b7ccd7118a5c1f4, type: 2}
+  - {fileID: 11400000, guid: 521edef797bfa4149b90ae375e527710, type: 2}
+  - {fileID: 11400000, guid: 1c562a638116b194ca5bde886f8f1251, type: 2}
+  - {fileID: 11400000, guid: 3e6b8129e79b3364ba8209da6bd7a1b1, type: 2}
   enemies: []
   satelliteMinRadius: 0
   satelliteMaxRadius: 0
