@@ -6,6 +6,7 @@ namespace Code.Scripts
 {
     public class Controller2D : MonoBehaviour
     {
+        [SerializeField] private SaveManager _saveManager;
         [SerializeField] private Controller2DInput _input;
         [SerializeField] private CameraFollower _cameraFollower;
         [Header("Controller Settings")]
@@ -74,8 +75,6 @@ namespace Code.Scripts
         
         private Inventory _inventory;
 
-        public Inventory GetInventory() { return _inventory; }
-
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
@@ -92,6 +91,11 @@ namespace Code.Scripts
             _isDashing = false;
             _dashAvailable = true;
 
+            // Loading from save file
+            var saveData = _saveManager.GetSaveData();
+            _movementSpeed = saveData.movementSpeed;
+            _miningTool.damage = saveData.miningToolDamage;
+            
             _shootDelay = _weapon.ShootDelay();
             _shootTimer = _shootDelay;
             _mineDelay = _miningTool.MineDelay();

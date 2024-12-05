@@ -7,6 +7,7 @@ namespace Code.Scripts.ScriptableObjects
     public class Planet : ScriptableObject
     {
         public new string name;
+        public int id;
         public float size;
         public Sprite sprite;
         public List<Ore> ores;
@@ -19,5 +20,7 @@ namespace Code.Scripts.ScriptableObjects
         public float satelliteMaxGravity;
         public int satelliteMinOreCount;
         public int satelliteMaxOreCount;
+        public float satelliteMinEnemyWaveInterval;
+        public float satelliteMaxEnemyWaveInterval;
     }
 }

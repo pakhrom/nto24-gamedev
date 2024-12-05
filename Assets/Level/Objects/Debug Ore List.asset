@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51502b6cf76249f2843daa2a2cf3a9eb, type: 3}
-  m_Name: Ore List
+  m_Name: Debug Ore List
   m_EditorClassIdentifier: 
-  ores: []
+  ores:
+  - {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}

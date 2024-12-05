@@ -1,5 +1,6 @@
 using Code.Scripts.Components;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.Scripts
 {
@@ -14,7 +15,7 @@ namespace Code.Scripts
         [SerializeField] private GameObject _toolLongRange;
 
         [Header("Short-range tool properties")] 
-        [SerializeField] private float _damage;
+        public float damage;
 
         [SerializeField] private float _mineDelay;
         // TODO: Implement this
@@ -75,7 +76,7 @@ namespace Code.Scripts
         {
             if (_ore)
             {
-                _ore.DealDamage(_damage);
+                _ore.DealDamage(damage);
             }
 
             _canHit = true;

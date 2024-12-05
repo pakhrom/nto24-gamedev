@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ba67890fe44195a3bc6a5ec1a3f151, type: 3}
   m_Name: Planet List
   m_EditorClassIdentifier: 
-  planets:
-  - {fileID: 11400000, guid: 5491b7e874b06224582c07b20e1fd202, type: 2}
+  planets: []

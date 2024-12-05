@@ -6,6 +6,7 @@ namespace Code.Scripts
 {
     public class Rocket : MonoBehaviour
     {
+        [SerializeField] private SaveManager _saveManager;
         [SerializeField] private GameObject _player;
         [SerializeField] private Weapon _weapon;
         [SerializeField] private PointAtMouse _weaponPointer;

@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51502b6cf76249f2843daa2a2cf3a9eb, type: 3}
-  m_Name: Ore List
+  m_Script: {fileID: 11500000, guid: f7ba67890fe44195a3bc6a5ec1a3f151, type: 3}
+  m_Name: Debug Planet List
   m_EditorClassIdentifier: 
-  ores: []
+  planets:
+  - {fileID: 11400000, guid: 5491b7e874b06224582c07b20e1fd202, type: 2}

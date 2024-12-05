@@ -7,6 +7,7 @@ namespace Code.Scripts.ScriptableObjects
     {
         public new string name;
         public int value;
+        public GameObject orePrefab;
         public GameObject ingotPrefab;
         
         [Tooltip("How many hits until drop")]
