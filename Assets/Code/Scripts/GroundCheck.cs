@@ -7,8 +7,7 @@ namespace Code.Scripts
         // [SerializeField] private LayerMask _layer;
         // [SerializeField] private float _threshold;
 
-        [SerializeField] private string _bulletObjectsTag;
-        [SerializeField] private string _bulletBoundingBoxObjectsTag;
+        [SerializeField] private string _solidTag;
 
         private bool _isGrounded;
         
@@ -27,13 +26,13 @@ namespace Code.Scripts
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(_bulletObjectsTag) || other.gameObject.CompareTag(_bulletBoundingBoxObjectsTag)) return;
+            if (!other.gameObject.CompareTag(_solidTag)) return;
             _isGrounded = true;
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag(_bulletObjectsTag)) return;
+            if (!other.gameObject.CompareTag(_solidTag)) return;
             _isGrounded = false;
         }
     }

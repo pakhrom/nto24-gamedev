@@ -418,6 +418,7 @@ MonoBehaviour:
   _player: {fileID: 1478240274}
   _weapon: {fileID: 610565569}
   _weaponPointer: {fileID: 443078705}
+  _playerInventory: {fileID: 1478240283}
   _buttonTooltip: {fileID: 1572756508}
 --- !u!50 &656635782
 Rigidbody2D:
@@ -505,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLocal: 0
-  _oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
+  oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
   _maxCapacity: 0
 --- !u!1 &675678353
 GameObject:
@@ -822,7 +823,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0.2905661, g: 0.2905661, b: 0.2905661, a: 1}
   m_FlipX: 0
@@ -1334,7 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isLocal: 1
-  _oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
+  oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
   _maxCapacity: 10
 --- !u!114 &1478240284 stripped
 MonoBehaviour:
@@ -1546,7 +1547,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1860,12 +1861,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612806349316792804, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _mineDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2612806349316792804, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: spriteRenderer
       value: 
       objectReference: {fileID: 1761883271}
     - target: {fileID: 2761702745563053504, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2942054048862505422, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3600615409682872197, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: m_Enabled
@@ -1887,9 +1896,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5499348840549518393, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7194626908577851964, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: _bulletObjectsTag
       value: Bullet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7194626908577851964, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _bulletBoundingBoxObjectsTag
+      value: BulletBoundingBox
       objectReference: {fileID: 0}
     - target: {fileID: 7862428762346134744, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: m_LocalScale.x
