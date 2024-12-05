@@ -1,6 +1,7 @@
 using System;
 using Code.Scripts.ScriptableObjects;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Code.Scripts
 {
@@ -12,6 +13,8 @@ namespace Code.Scripts
 
         [SerializeField] private Transform _ground;
 
+        private bool _isLoadingDone;
+
         private void Start()
         {
             _controller.enabled = false;
@@ -20,11 +23,13 @@ namespace Code.Scripts
 
         private void Update()
         {
-            if (!_satellite.IsInitialized()) return;
-            _ground.localScale = new Vector3(2f * Mathf.PI * _satellite.radius, 1f, 1f);
+            if (_satellite.IsInitialized() && _isLoadingDone) return;
+            _ground.localScale = new Vector3(2f * Mathf.PI * _satellite.radius + 18f, 1f, 1f); // Периметр спутника
+            Physics2D.gravity = new Vector2(0f, _satellite.gravity); // Гравитация на спутнике
+            
+            _isLoadingDone = true;
             _controller.enabled = true;
             // TODO: Disable loading screen
-            return;
         }
     }
 }

@@ -10,10 +10,13 @@ namespace Code.Scripts.ScriptableObjects
         public float size;
         public Sprite sprite;
         public List<Ore> ores;
+        public List<Enemy> enemies;
 
         [Header("Satellite properties")]
         public float satelliteMinRadius;
         public float satelliteMaxRadius;
+        public float satelliteMinGravity;
+        public float satelliteMaxGravity;
         public int satelliteMinOreCount;
         public int satelliteMaxOreCount;
     }

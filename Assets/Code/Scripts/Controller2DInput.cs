@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,8 @@ namespace Code.Scripts
         private bool _isJumpButtonPressed;
         private bool _isShootingButtonPressed;
         private bool _isMiningButtonPressed;
+
+        [NonSerialized] public bool canInteract = true;
 
         public bool IsJumpButtonPressed => _isJumpButtonPressed;
 
@@ -29,12 +32,14 @@ namespace Code.Scripts
 
         public void Movement(InputAction.CallbackContext context)
         {
+            if (!canInteract) return;
             var movementDirection = context.ReadValue<Vector2>();
             _controller.SetMovementDirection(movementDirection);
         }
         
         public void Jump(InputAction.CallbackContext context)
         {
+            if (!canInteract) return;
             if (context.performed)
             {
                 _controller.Jump();
@@ -61,6 +66,7 @@ namespace Code.Scripts
 
         public void Mine(InputAction.CallbackContext context)
         {
+            if (!canInteract) return;
             if (context.performed)
             {
                 _isMiningButtonPressed = true;
@@ -69,6 +75,14 @@ namespace Code.Scripts
             if (context.canceled)
             {
                 _isMiningButtonPressed = false;
+            }
+        }
+
+        public void Action(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                _controller.Action();
             }
         }
         

@@ -7,6 +7,7 @@ namespace Code.Scripts
     public class Controller2D : MonoBehaviour
     {
         [SerializeField] private Controller2DInput _input;
+        [SerializeField] private CameraFollower _cameraFollower;
         [Header("Controller Settings")]
         [SerializeField] private bool _isSideOn; 
         [SerializeField] private bool _canDash;
@@ -34,14 +35,8 @@ namespace Code.Scripts
         [Tooltip("Must be equal to the ChangeItem animation duration")]
         [SerializeField] private float _changeItemDuration;
 
-        [Header("Shooting Settings")] 
-        [SerializeField] private GameObject _bulletPrefab;
-        [SerializeField] private Transform _shootPosition;
-        [SerializeField] private float _shootDelay;
-
         [Header("Mining tools Settings")] 
         [SerializeField] private MiningTool _miningTool;
-        [SerializeField] private float _mineDelay;
 
         [Header("Weapon Settings")] 
         [SerializeField] private Weapon _weapon;
@@ -56,7 +51,9 @@ namespace Code.Scripts
 
         private float _changeItemTimer;
         private float _shootTimer;
+        private float _shootDelay;
         private float _mineTimer;
+        private float _mineDelay;
         
         private bool _isDashing;
         private bool _dashAvailable;
@@ -64,6 +61,8 @@ namespace Code.Scripts
         private Rigidbody2D _rigidbody;
         private float _defaultGravityScale;
 
+        private Rocket _rocket;
+        private SpriteRenderer _spriteRenderer;
         private Animator _animator;
         
         private Vector2 _movementDirection;
@@ -71,11 +70,16 @@ namespace Code.Scripts
         private float _coyoteTimeCounter;
         private float _jumpBufferCounter;
 
+        private Vector3 _originalPosition;
+        
         private Inventory _inventory;
+
+        public Inventory GetInventory() { return _inventory; }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _inventory = GetComponent<Inventory>();
 
@@ -88,7 +92,9 @@ namespace Code.Scripts
             _isDashing = false;
             _dashAvailable = true;
 
+            _shootDelay = _weapon.ShootDelay();
             _shootTimer = _shootDelay;
+            _mineDelay = _miningTool.MineDelay();
             _mineTimer = _mineDelay;
             _changeItemTimer = _changeItemDuration;
 
@@ -136,8 +142,18 @@ namespace Code.Scripts
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!other.gameObject.TryGetComponent(out OreIngot oreIngot)) return;
-            _inventory.AddOre(oreIngot, 1);
+            if (other.gameObject.TryGetComponent(out OreIngot oreIngot))
+            {
+                _inventory.AddOre(oreIngot, 1);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!_rocket && other.gameObject.TryGetComponent(out Rocket rocket))
+            {
+                _rocket = rocket;
+            }
         }
 
         private void ProcessMovement()
@@ -159,6 +175,11 @@ namespace Code.Scripts
                 < 0f => new Vector3(-1f, transform.localScale.y, transform.localScale.z),
                 _ => _miningTool.transform.localScale
             };
+        }
+
+        public void SetMovementSpeed(float speed)
+        {
+            _movementSpeed = speed;
         }
 
         public void Jump()
@@ -218,19 +239,25 @@ namespace Code.Scripts
 
         public void Shoot()
         {
-            if (_activeItem != Items.Weapon)
+            if (!_rocket || !_rocket.isPlayerInRocket)
             {
-                ChangeActiveItem(Items.Weapon);
-                return;
+                if (!_canShoot) return;
+            
+                if (_activeItem != Items.Weapon)
+                {
+                    ChangeActiveItem(Items.Weapon);
+                    return;
+                }
+            
+                if (!(_changeItemTimer >= _changeItemDuration) || !(_shootTimer >= _shootDelay) || !_input.IsShootingButtonPressed) return;
+                _weapon.Shoot();
+                _shootTimer = 0f;
             }
-            
-            if (!_canShoot) return;
-            
-            if (!(_changeItemTimer >= _changeItemDuration) || !(_shootTimer >= _shootDelay) || !_input.IsShootingButtonPressed) return;
-            Instantiate(_bulletPrefab, _shootPosition.position,
-                Quaternion.Euler(_shootPosition.eulerAngles +
-                                 new Vector3(0, 0, 90))); // BUG: Change this when changing rotation of ShootingPosition
-            _shootTimer = 0f;
+            else if (_rocket.isPlayerInRocket)
+            {
+                if (!(_rocket.shootTimer >= _rocket.shootDelay) || !_input.IsShootingButtonPressed) return;
+                _rocket.Shoot();
+            }
         }
 
         public void Mine()
@@ -244,6 +271,50 @@ namespace Code.Scripts
             if (!(_changeItemTimer >= _changeItemDuration) || !(_mineTimer >= _mineDelay) || !_input.IsMiningButtonPressed) return;
             _miningTool.Mine();
             _mineTimer = 0f;
+        }
+
+        public void Action()
+        {
+            if (!_rocket) return;
+            if (_rocket.isPlayerNearby && !_rocket.isPlayerInRocket)
+            {
+                Switch();
+
+                _cameraFollower.SetTarget(_rocket.transform);
+                _cameraFollower.SetOffsetY(5f);
+                _cameraFollower.cameraSize = 9;
+
+                _rocket.Enter();
+            }
+            else if (_rocket.isPlayerInRocket)
+            {
+                Switch();
+                
+                _cameraFollower.RestoreDefaults();
+                
+                _rocket.Exit();
+            }
+        }
+
+        private void Switch()
+        {
+            _input.canInteract = !_input.canInteract;
+            
+            _spriteRenderer.enabled = _input.canInteract;
+            _miningTool.spriteRenderer.enabled = _input.canInteract;
+            _miningTool.enabled = _input.canInteract;
+            _weapon.spriteRenderer.enabled = _input.canInteract;
+            _weapon.enabled = _input.canInteract;
+            _rigidbody.simulated = _input.canInteract;
+            if (!_input.canInteract)
+            {
+                _originalPosition = transform.position;
+            }
+            else if (_input.canInteract)
+            {
+                
+                transform.position = _originalPosition;
+            }
         }
 
         public IEnumerator Dash()

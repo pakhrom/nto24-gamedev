@@ -53,7 +53,7 @@
                 {
                     "name": "Action",
                     "type": "Button",
-                    "id": "6a585608-6f68-456d-b8df-928ac8a723bc",
+                    "id": "1b742dff-728d-4f8e-b101-0f7f2eb4fec9",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -250,28 +250,6 @@
                 },
                 {
                     "name": "",
-                    "id": "cc1ae8c6-b5d8-4c7e-873e-378dfe6861f9",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "017331b5-cf61-4dea-82f2-e146391af96d",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4ad2d441-38fd-4b5e-89eb-0c98c93a7fd5",
                     "path": "<Mouse>/position",
                     "interactions": "",
@@ -289,6 +267,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7dcda47c-de1d-47ce-9704-e012ec86e309",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

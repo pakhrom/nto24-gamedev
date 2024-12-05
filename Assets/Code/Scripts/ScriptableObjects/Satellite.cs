@@ -8,6 +8,7 @@ namespace Code.Scripts.ScriptableObjects
     public class Satellite : ScriptableObject
     {
         [NonSerialized] public float radius;
+        [NonSerialized] public float gravity;
         [NonSerialized] public int oreCount;
 
         [SerializeField] private bool _debug;
@@ -24,6 +25,7 @@ namespace Code.Scripts.ScriptableObjects
             if (_isInitialized && !_debug) return;
             
             radius = Random.Range(planet.satelliteMinRadius, planet.satelliteMaxRadius);
+            gravity = Random.Range(planet.satelliteMinGravity, planet.satelliteMaxGravity);
             oreCount = Random.Range(planet.satelliteMinOreCount, planet.satelliteMaxOreCount + 1);
 
             _isInitialized = true;

@@ -6,6 +6,7 @@ namespace Code.Scripts
     public class MiningTool : MonoBehaviour
     {
         [SerializeField] private Controller2DInput _input;
+        public SpriteRenderer spriteRenderer;
         [SerializeField] private string _oreTag;
         
         [Header("Tool types")]
@@ -14,6 +15,8 @@ namespace Code.Scripts
 
         [Header("Short-range tool properties")] 
         [SerializeField] private float _damage;
+
+        [SerializeField] private float _mineDelay;
         // TODO: Implement this
         
         [Header("Animations")]
@@ -21,16 +24,21 @@ namespace Code.Scripts
 
         [Header("Debug flags")]
         [SerializeField] private bool _isLongRangeActive = false;
-
+        
         private Animator _animator;
         private BoxCollider2D _toolShortRangeArea;
 
         private OreComponent _ore;
 
+        private bool _canHit;
+
+        public float MineDelay() {return _mineDelay;}
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
             _toolShortRangeArea = GetComponent<BoxCollider2D>();
+            _canHit = true;
             
             if (!_isLongRangeActive) return; // When tool is long-range
             _toolShortRange.SetActive(false);
@@ -56,20 +64,21 @@ namespace Code.Scripts
 
         public void Mine()
         {
-            if (!_isLongRangeActive)
+            if (!_isLongRangeActive && _canHit)
             {
+                _canHit = false;
                 _animator.SetTrigger(_toolSwingTrigger);
             }
         }
 
         public void ToolSwingEnd()
         {
-            // TODO: Deal damage
-
             if (_ore)
             {
                 _ore.DealDamage(_damage);
             }
+
+            _canHit = true;
         }
     }
 }

@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 2342849894085497083}
   - component: {fileID: 487649515012992959}
   m_Layer: 0
-  m_Name: DefaultOre
+  m_Name: DebugOre
   m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
