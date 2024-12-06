@@ -31,5 +31,10 @@ namespace Code.Scripts
             _controller.enabled = true;
             // TODO: Disable loading screen
         }
+
+        public void PlayerDie()
+        {
+            Debug.Log("Player died");
+        }
     }
 }

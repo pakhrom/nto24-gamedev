@@ -24,6 +24,8 @@ namespace Code.Scripts
                 Destroy(this);
             }
             DontDestroyOnLoad(this);
+
+            _saveData = _defaultSaveData;
         }
 
         public SaveData GetSaveData()

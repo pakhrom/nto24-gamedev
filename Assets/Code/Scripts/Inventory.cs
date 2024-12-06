@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Code.Scripts.ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Code.Scripts
 {
     public class Inventory : MonoBehaviour
     {
-        [SerializeField] private bool _isLocal;
+        [FormerlySerializedAs("_isLocal")] [SerializeField] private bool _isRocketInventory;
 
         public OreList oreList;
 
@@ -26,7 +27,7 @@ namespace Code.Scripts
 
             foreach (var ore in oreList.ores)
             {
-                if (_isLocal)
+                if (_isRocketInventory)
                 {
                     inventory.Add(ore.name, 0);
                 }
@@ -41,7 +42,7 @@ namespace Code.Scripts
         public void AddOre(OreIngot oreIngot, int amount)
         {
             int amountToAdd;
-            if (_isLocal)
+            if (_isRocketInventory)
             {
                 if (_currentFullness == _maxCapacity) return;
                 amountToAdd = Math.Min(amount, _maxCapacity - _currentFullness);
@@ -55,13 +56,13 @@ namespace Code.Scripts
                 inventory[oreIngot.ore.name] += amountToAdd;
             }
             
-            Debug.Log($"Added {amountToAdd} {oreIngot.ore.name} ore to Inventory. Local: {_isLocal}");
+            Debug.Log($"Added {amountToAdd} {oreIngot.ore.name} ore to Inventory. Local: {_isRocketInventory}");
         }
         
         public void AddOre(Ore ore, int amount)
         {
             int amountToAdd;
-            if (_isLocal)
+            if (_isRocketInventory)
             {
                 if (_currentFullness == _maxCapacity) return;
                 amountToAdd = Math.Min(amount, _maxCapacity - _currentFullness);
@@ -74,43 +75,43 @@ namespace Code.Scripts
                 inventory[ore.name] += amountToAdd;
             }
             
-            Debug.Log($"Added {amountToAdd} {ore.name} ore to Inventory. Local: {_isLocal}");
+            Debug.Log($"Added {amountToAdd} {ore.name} ore to Inventory. Local: {_isRocketInventory}");
         }
 
         public void RemoveOre(OreIngot oreIngot, int amount)
         {
             if (inventory[oreIngot.ore.name] - amount < 0)
             {
-                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isLocal}");
+                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isRocketInventory}");
                 return;
             }
             
             inventory[oreIngot.ore.name] -= amount;
-            Debug.Log($"Removed {amount} {oreIngot.ore.name} ore from Inventory. Local: {_isLocal}");
+            Debug.Log($"Removed {amount} {oreIngot.ore.name} ore from Inventory. Local: {_isRocketInventory}");
         }
         
         public void RemoveOre(Ore ore, int amount)
         {
             if (inventory[ore.name] - amount < 0)
             {
-                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isLocal}");
+                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isRocketInventory}");
                 return;
             }
             
             inventory[ore.name] -= amount;
-            Debug.Log($"Removed {amount} {ore.name} ore from Inventory. Local: {_isLocal}");
+            Debug.Log($"Removed {amount} {ore.name} ore from Inventory. Local: {_isRocketInventory}");
         }
         
         public void RemoveOre(int oreID, int amount)
         {
             if (inventory[oreList.ores[oreID].name] - amount < 0)
             {
-                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isLocal}");
+                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isRocketInventory}");
                 return;
             }
             
             inventory[oreList.ores[oreID].name] -= amount;
-            Debug.Log($"Removed {amount} {oreList.ores[oreID].name} ore from Inventory. Local: {_isLocal}");
+            Debug.Log($"Removed {amount} {oreList.ores[oreID].name} ore from Inventory. Local: {_isRocketInventory}");
         }
     }
 }

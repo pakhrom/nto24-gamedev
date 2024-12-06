@@ -12,7 +12,13 @@ namespace Code.Scripts
         private Rigidbody2D _rigidbody;
         private GameObject _bulletBoundingBox;
 
+        [NonSerialized] public float damage;
         [NonSerialized] public bool fromRocket;
+
+        public void SetSpeed(float speed)
+        {
+            _speed = speed;
+        }
         
         private void Start()
         {
@@ -27,6 +33,24 @@ namespace Code.Scripts
             var movePosition3 = transform.position - up * (_speed * Time.fixedDeltaTime);
             var movePosition = new Vector2(movePosition3.x, movePosition3.y);
             _rigidbody.MovePosition(movePosition);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.TryGetComponent(out Health health))
+            {
+                if (!_fromEnemy && other.gameObject.TryGetComponent(out Enemy enemy))
+                {
+                    health.DealDamage(damage);
+                    Destroy(gameObject);
+                }
+
+                if (_fromEnemy && other.gameObject.TryGetComponent(out Controller2D controller))
+                {
+                    health.DealDamage(damage);
+                    Destroy(gameObject);
+                }
+            }
         }
 
         private void OnTriggerExit2D(Collider2D other)

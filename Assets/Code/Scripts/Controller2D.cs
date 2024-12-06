@@ -309,14 +309,14 @@ namespace Code.Scripts
             _miningTool.enabled = _input.canInteract;
             _weapon.spriteRenderer.enabled = _input.canInteract;
             _weapon.enabled = _input.canInteract;
-            _rigidbody.simulated = _input.canInteract;
+            _rigidbody.linearVelocity = new Vector2(0f, 0f);
+            //_rigidbody.simulated = _input.canInteract;
             if (!_input.canInteract)
             {
                 _originalPosition = transform.position;
             }
             else if (_input.canInteract)
             {
-                
                 transform.position = _originalPosition;
             }
         }

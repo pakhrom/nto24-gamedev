@@ -9,15 +9,19 @@ namespace Code.Scripts
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private Transform _shootPosition;
         [SerializeField] private float _shootDelay;
+        [SerializeField] private float _damage;
+        [SerializeField] private Vector3 _rotationOffset;
         
         public float ShootDelay() {return _shootDelay;}
 
-        public void Shoot()
+        public Bullet Shoot()
         {
             var bullet = Instantiate(_bulletPrefab, _shootPosition.position,
-                Quaternion.Euler(_shootPosition.eulerAngles +
-                                 new Vector3(0, 0, 90))); // BUG: Change this when changing rotation of ShootingPosition
-            if (_rocketWeapon) bullet.GetComponent<Bullet>().fromRocket = true;
+                Quaternion.Euler(_shootPosition.eulerAngles + _rotationOffset));
+            var bulletComponent = bullet.GetComponent<Bullet>();
+            bulletComponent.damage = _damage;
+            if (_rocketWeapon) bulletComponent.fromRocket = true;
+            return bulletComponent;
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -5,18 +6,19 @@ namespace Code.Scripts
 {
     public class Health : MonoBehaviour
     {
+        [SerializeField] private float _defaultHealth;
         [SerializeField] private bool _destroyOnDeath;
         [SerializeField] private bool _callEventOnDeath;
         [SerializeField] private UnityEvent _eventOnDeath;
         
         private float _health;
 
-        public void SetHealth(float health)
+        private void Start()
         {
-            _health = health;
+            _health = _defaultHealth;
         }
 
-        public void ReceiveDamage(float damage)
+        public void DealDamage(float damage)
         {
             _health -= damage;
             if (_health <= 0f) Die();
@@ -31,7 +33,7 @@ namespace Code.Scripts
 
             if (_destroyOnDeath)
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }
