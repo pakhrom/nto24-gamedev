@@ -1,3 +1,4 @@
+using System;
 using Code.Scripts.Components;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -26,20 +27,20 @@ namespace Code.Scripts
         [Header("Debug flags")]
         [SerializeField] private bool _isLongRangeActive = false;
         
-        private Animator _animator;
+        [NonSerialized] public Animator animator;
         private BoxCollider2D _toolShortRangeArea;
 
         private OreComponent _ore;
 
-        private bool _canHit;
+        [NonSerialized] public bool canHit;
 
         public float MineDelay() {return _mineDelay;}
         
         private void Start()
         {
-            _animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
             _toolShortRangeArea = GetComponent<BoxCollider2D>();
-            _canHit = true;
+            canHit = true;
             
             if (!_isLongRangeActive) return; // When tool is long-range
             _toolShortRange.SetActive(false);
@@ -66,10 +67,10 @@ namespace Code.Scripts
 
         public void Mine()
         {
-            if (!_isLongRangeActive && _canHit)
+            if (!_isLongRangeActive && canHit)
             {
-                _canHit = false;
-                _animator.SetTrigger(_toolSwingTrigger);
+                canHit = false;
+                animator.SetTrigger(_toolSwingTrigger);
             }
         }
 
@@ -80,7 +81,7 @@ namespace Code.Scripts
                 _ore.DealDamage(damage);
             }
 
-            _canHit = true;
+            canHit = true;
         }
     }
 }

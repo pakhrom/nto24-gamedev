@@ -9,7 +9,7 @@ namespace Code.Scripts
     public class Inventory : MonoBehaviour
     {
         [FormerlySerializedAs("_isLocal")] [SerializeField] private bool _isRocketInventory;
-        [SerializeField] private bool _isGlobalInventory;
+        private bool _isGlobalInventory;
 
         public OreList oreList;
 

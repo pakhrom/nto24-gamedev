@@ -74,7 +74,7 @@ namespace Code.Scripts
         private Vector3 _originalPosition;
         
         private Inventory _inventory;
-        private Health _health;
+        [NonSerialized] public Health health;
 
         private void Awake()
         {
@@ -82,7 +82,7 @@ namespace Code.Scripts
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _inventory = GetComponent<Inventory>();
-            _health = GetComponent<Health>();
+            health = GetComponent<Health>();
 
             if (!_isSideOn)
             {
@@ -97,7 +97,7 @@ namespace Code.Scripts
             var saveData = _saveManager.GetSaveData();
             _movementSpeed = saveData.movementSpeed;
             _miningTool.damage = saveData.miningToolDamage;
-            _health.SetHealth(saveData.health);
+            health.SetHealth(saveData.health);
             
             _shootDelay = _weapon.ShootDelay();
             _shootTimer = _shootDelay;
@@ -222,6 +222,8 @@ namespace Code.Scripts
                     
                     _animator.SetInteger(_activeItemIntProperty, 0);
                     _animator.SetTrigger(_changeItemTrigger);
+                    _miningTool.animator.Play("ToolIdle");
+                    _miningTool.canHit = true;
                     break;
                 case Items.Weapon:
                     _activeItem = Items.Weapon;
@@ -316,7 +318,7 @@ namespace Code.Scripts
             if (!_input.canInteract)
             {
                 _originalPosition = transform.position;
-                transform.position = _rocket.transform.position;
+                transform.position = _rocket.transform.position + new Vector3(0f, 0f, 1f);
                 _rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             }
             else if (_input.canInteract)

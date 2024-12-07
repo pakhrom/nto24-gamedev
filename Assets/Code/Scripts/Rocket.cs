@@ -7,7 +7,7 @@ namespace Code.Scripts
     public class Rocket : MonoBehaviour
     {
         [SerializeField] private SaveManager _saveManager;
-        [SerializeField] private GameObject _player;
+        [SerializeField] private Controller2D _player;
         [SerializeField] private Weapon _weapon;
         [SerializeField] private PointAtMouse _weaponPointer;
         [SerializeField] private Inventory _playerInventory;
@@ -51,6 +51,8 @@ namespace Code.Scripts
             
             _weapon.enabled = true;
             _weaponPointer.enabled = true;
+            
+            _player.health.SetDamageMultiplier(_saveManager.GetSaveData().inRocketDamageMultiplier);
 
             isPlayerInRocket = true;
         }
@@ -59,13 +61,15 @@ namespace Code.Scripts
         {
             _weapon.enabled = false;
             _weaponPointer.enabled = false;
+            
+            _player.health.SetDamageMultiplier(1f);
 
             isPlayerInRocket = false;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.GetInstanceID() == _player.GetInstanceID())
+            if (other.gameObject.GetInstanceID() == _player.gameObject.GetInstanceID())
             {
                 isPlayerNearby = true;
                 _buttonTooltip.SetActive(true);
@@ -74,7 +78,7 @@ namespace Code.Scripts
         
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.gameObject.GetInstanceID() == _player.GetInstanceID())
+            if (other.gameObject.GetInstanceID() == _player.gameObject.GetInstanceID())
             {
                 isPlayerNearby = false;
                 _buttonTooltip.SetActive(false);

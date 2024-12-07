@@ -16,6 +16,7 @@ MonoBehaviour:
   tutorialCompleted: 0
   money: 0
   health: 100
+  inRocketDamageMultiplier: 0.9
   movementSpeed: 3
   miningToolDamage: 1
   currentPlanet: {fileID: 11400000, guid: 205ba4cd8c2261f43a5f920bc56485bb, type: 2}

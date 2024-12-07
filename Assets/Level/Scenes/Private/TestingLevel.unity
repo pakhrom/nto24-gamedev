@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saveManager: {fileID: 1287003547}
-  _player: {fileID: 1478240274}
+  _player: {fileID: 1478240284}
   _weapon: {fileID: 610565569}
   _weaponPointer: {fileID: 443078705}
   _playerInventory: {fileID: 1478240283}
@@ -901,7 +901,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isRocketInventory: 1
-  _isGlobalInventory: 0
   oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
   _maxCapacity: 0
 --- !u!1 &675678353
@@ -1600,11 +1599,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1478240274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5336873358818146652, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
-  m_PrefabInstance: {fileID: 7023740261040950508}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1478240282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1188683791952867475, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
@@ -1615,7 +1609,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8362323676377153948, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
   m_PrefabInstance: {fileID: 7023740261040950508}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478240274}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cfe7df3a806cbcb4b95ae6a9f0752630, type: 3}
@@ -1626,7 +1620,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3600615409682872197, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
   m_PrefabInstance: {fileID: 7023740261040950508}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478240274}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa7b993ddf8eb4f45834d26b5031174c, type: 3}
@@ -1984,6 +1978,14 @@ PrefabInstance:
     - target: {fileID: 1188683791952867475, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2062361736847067163, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512785254015243594, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
+      propertyPath: _waveInterval
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3512785254015243594, guid: 6b378f3b9bb9a044a91a614b489cfbae, type: 3}
       propertyPath: _satelliteManager

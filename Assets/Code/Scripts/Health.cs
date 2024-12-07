@@ -12,6 +12,7 @@ namespace Code.Scripts
         [SerializeField] private UnityEvent _eventOnDeath;
         
         private float _health;
+        private float _damageMultiplier = 1f;
 
         private void Start()
         {
@@ -20,9 +21,11 @@ namespace Code.Scripts
         
         public void SetHealth(float health) { _health = health; }
 
+        public void SetDamageMultiplier(float multiplier) { _damageMultiplier = multiplier; }
+
         public void DealDamage(float damage)
         {
-            _health -= damage;
+            _health -= damage * _damageMultiplier;
             if (_health <= 0f) Die();
         }
 
