@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 2342849894085497083}
   - component: {fileID: 487649515012992959}
   m_Layer: 0
-  m_Name: DebugOre
+  m_Name: DebugOre1
   m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,13 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _miningProgressCanvas: {fileID: 7995534465236673375}
   _miningProgressSlider: {fileID: 510663578939688941}
+  _ore: {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}
   _oreDropPosition: {fileID: 42249574371167801}
-  _oreIngotPrefab: {fileID: 5981964462025976705, guid: 599817eccdeb3a4449cd648b2c3cbf6b, type: 3}
-  _oreDropThreshold: 3
-  _minDropCount: 2
-  _maxDropCount: 6
-  _minOrePerDrop: 1
-  _maxOrePerDrop: 2
 --- !u!1 &5344711338548679649
 GameObject:
   m_ObjectHideFlags: 0

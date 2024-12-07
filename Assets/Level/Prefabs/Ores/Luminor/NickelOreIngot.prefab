@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8840584668608988281}
   - component: {fileID: -3656578040255248992}
   - component: {fileID: 8685332861637377242}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NickelOreIngot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

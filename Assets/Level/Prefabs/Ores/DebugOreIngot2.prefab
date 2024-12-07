@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 8840584668608988281}
   - component: {fileID: -3656578040255248992}
   - component: {fileID: 8685332861637377242}
-  m_Layer: 0
-  m_Name: DebugOreIngot
+  m_Layer: 6
+  m_Name: DebugOreIngot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0.75783706, b: 0.17924517, a: 1}
+  m_Color: {r: 0.6456816, g: 1, b: 0.50377357, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -182,4 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425542508e47d6e4e942f626185cca67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ore: {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}
+  ore: {fileID: 11400000, guid: dc3d1a15ca6f89642a16c307dfb651a5, type: 2}

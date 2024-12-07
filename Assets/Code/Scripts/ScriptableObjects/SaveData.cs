@@ -11,6 +11,7 @@ namespace Code.Scripts.ScriptableObjects
         [Header("Player Stats")]
         public int money;
         public float health;
+        public float inRocketDamageMultiplier;
         public float movementSpeed;
         public float miningToolDamage;
         public Planet currentPlanet;

@@ -17,6 +17,8 @@ namespace Code.Scripts
         {
             _health = _defaultHealth;
         }
+        
+        public void SetHealth(float health) { _health = health; }
 
         public void DealDamage(float damage)
         {

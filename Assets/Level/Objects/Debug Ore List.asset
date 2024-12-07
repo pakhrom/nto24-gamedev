@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ores:
   - {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}
+  - {fileID: 11400000, guid: dc3d1a15ca6f89642a16c307dfb651a5, type: 2}

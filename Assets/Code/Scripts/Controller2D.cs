@@ -74,6 +74,7 @@ namespace Code.Scripts
         private Vector3 _originalPosition;
         
         private Inventory _inventory;
+        private Health _health;
 
         private void Awake()
         {
@@ -81,6 +82,7 @@ namespace Code.Scripts
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _inventory = GetComponent<Inventory>();
+            _health = GetComponent<Health>();
 
             if (!_isSideOn)
             {
@@ -95,6 +97,7 @@ namespace Code.Scripts
             var saveData = _saveManager.GetSaveData();
             _movementSpeed = saveData.movementSpeed;
             _miningTool.damage = saveData.miningToolDamage;
+            _health.SetHealth(saveData.health);
             
             _shootDelay = _weapon.ShootDelay();
             _shootTimer = _shootDelay;

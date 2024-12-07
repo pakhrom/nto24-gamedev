@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6850483545a7a38429a4ff69be223427, type: 3}
-  m_Name: DebugOre
+  m_Name: DebugOre2
   m_EditorClassIdentifier: 
-  name: Debug
-  value: 2
+  name: Debug2
+  value: 4
+  orePrefab: {fileID: 4304232938265903857, guid: ca5f421a945087d4aa55eac3855bac40, type: 3}
   ingotPrefab: {fileID: 5981964462025976705, guid: 599817eccdeb3a4449cd648b2c3cbf6b, type: 3}
-  minOreDropThreshold: 3
-  maxOreDropThreshold: 4
+  minOreDropThreshold: 4
+  maxOreDropThreshold: 6
   minDropCount: 2
-  maxDropCount: 5
+  maxDropCount: 3
   minOrePerDrop: 1
-  maxOrePerDrop: 2
+  maxOrePerDrop: 3

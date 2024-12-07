@@ -7,7 +7,7 @@ namespace Code.Scripts.ScriptableObjects
     [CreateAssetMenu(fileName = "New Debug Satellite", menuName = "Debug Satellite")]
     public class Satellite : ScriptableObject
     {
-        [NonSerialized] public float radius;
+        [NonSerialized] public float perimeter;
         [NonSerialized] public float gravity;
         [NonSerialized] public int oreCount;
 
@@ -24,7 +24,7 @@ namespace Code.Scripts.ScriptableObjects
         {
             if (_isInitialized && !_debug) return;
             
-            radius = Random.Range(planet.satelliteMinRadius, planet.satelliteMaxRadius);
+            perimeter = Random.Range(planet.satelliteMinPerimeter, planet.satelliteMaxPerimeter);
             gravity = Random.Range(planet.satelliteMinGravity, planet.satelliteMaxGravity);
             oreCount = Random.Range(planet.satelliteMinOreCount, planet.satelliteMaxOreCount + 1);
 
