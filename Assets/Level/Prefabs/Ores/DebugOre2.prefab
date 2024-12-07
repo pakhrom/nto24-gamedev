@@ -353,7 +353,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.93619156, b: 0.58679235, a: 1}
+  m_Color: {r: 0.79902226, g: 1, b: 0.5882353, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 2342849894085497083}
   - component: {fileID: 487649515012992959}
   m_Layer: 0
-  m_Name: DebugOre
+  m_Name: DebugOre2
   m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -459,13 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _miningProgressCanvas: {fileID: 7995534465236673375}
   _miningProgressSlider: {fileID: 510663578939688941}
+  _ore: {fileID: 11400000, guid: dc3d1a15ca6f89642a16c307dfb651a5, type: 2}
   _oreDropPosition: {fileID: 42249574371167801}
-  _oreIngotPrefab: {fileID: 5981964462025976705, guid: 599817eccdeb3a4449cd648b2c3cbf6b, type: 3}
-  _oreDropThreshold: 3
-  _minDropCount: 2
-  _maxDropCount: 6
-  _minOrePerDrop: 1
-  _maxOrePerDrop: 2
 --- !u!1 &5344711338548679649
 GameObject:
   m_ObjectHideFlags: 0

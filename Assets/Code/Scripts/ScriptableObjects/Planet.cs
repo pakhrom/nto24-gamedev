@@ -13,9 +13,9 @@ namespace Code.Scripts.ScriptableObjects
         public List<Ore> ores;
         public List<EnemyType> enemies;
 
-        [Header("Satellite properties")]
-        public float satelliteMinRadius;
-        public float satelliteMaxRadius;
+        [Header("Satellite properties")] 
+        public float satelliteMinPerimeter;
+        public float satelliteMaxPerimeter;
         public float satelliteMinGravity;
         public float satelliteMaxGravity;
         public int satelliteMinOreCount;

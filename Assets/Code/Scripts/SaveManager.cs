@@ -26,6 +26,7 @@ namespace Code.Scripts
             DontDestroyOnLoad(this);
 
             _saveData = _defaultSaveData;
+            LoadGame();
         }
 
         public SaveData GetSaveData()
@@ -72,11 +73,13 @@ namespace Code.Scripts
             file.Close();
         }
 
-        public void LoadGame()
+        private void LoadGame()
         {
             if (!IsSaveDataExists())
             {
                 CreateEmptySave();
+                Debug.Log("New save file created.");
+                return;
             }
 
             BinaryFormatter binaryFormatter = new BinaryFormatter();

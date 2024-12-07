@@ -58,7 +58,8 @@ namespace Code.Scripts
         private void OnTriggerExit2D(Collider2D other)
         {
             if (!other.gameObject.CompareTag(_oreTag)) return;
-            
+
+            if (!_ore) return;
             _ore.SwitchSlider();
             _ore = null;
         }
