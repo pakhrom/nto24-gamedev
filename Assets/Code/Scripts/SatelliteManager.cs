@@ -15,6 +15,10 @@ namespace Code.Scripts
 
         private bool _isLoadingDone;
 
+        public Planet GetPlanet() { return _planet; }
+        
+        public Controller2D GetController() { return _controller; }
+
         private void Start()
         {
             _controller.enabled = false;

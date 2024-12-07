@@ -16,6 +16,7 @@ namespace Code.Scripts
         private float _shootTimer;
         
         public Transform moveTarget;
+        public EnemySpawner enemySpawner;
 
         private void Start()
         {
@@ -44,6 +45,12 @@ namespace Code.Scripts
                     _shootTimer = 0f;
                 }
             }
+        }
+
+        public void Die()
+        {
+            enemySpawner.EnemyDied();
+            Destroy(gameObject);
         }
     }
 }

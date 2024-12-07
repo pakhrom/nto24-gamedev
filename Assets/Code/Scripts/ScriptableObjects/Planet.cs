@@ -11,7 +11,7 @@ namespace Code.Scripts.ScriptableObjects
         public float size;
         public Sprite sprite;
         public List<Ore> ores;
-        public List<Enemy> enemies;
+        public List<EnemyType> enemies;
 
         [Header("Satellite properties")]
         public float satelliteMinRadius;

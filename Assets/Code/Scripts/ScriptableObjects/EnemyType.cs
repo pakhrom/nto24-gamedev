@@ -7,6 +7,7 @@ namespace Code.Scripts.ScriptableObjects
     {
         public new string name;
         public float moveSpeed;
+        public GameObject enemyPrefab;
         
         [Header("Attacking properties")]
         public float damage;

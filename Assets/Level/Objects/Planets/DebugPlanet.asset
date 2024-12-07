@@ -13,14 +13,18 @@ MonoBehaviour:
   m_Name: DebugPlanet
   m_EditorClassIdentifier: 
   name: Debug
+  id: 0
   size: 0
   sprite: {fileID: 0}
   ores:
   - {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}
-  enemies: []
+  enemies:
+  - {fileID: 11400000, guid: 001ffca56e431404c8a5bae232bdf912, type: 2}
   satelliteMinRadius: 6
   satelliteMaxRadius: 9
   satelliteMinGravity: -4
   satelliteMaxGravity: -18
   satelliteMinOreCount: 3
   satelliteMaxOreCount: 6
+  satelliteMinEnemyWaveInterval: 0
+  satelliteMaxEnemyWaveInterval: 0
