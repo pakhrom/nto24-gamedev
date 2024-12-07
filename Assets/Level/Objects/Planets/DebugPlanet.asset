@@ -20,6 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e03b6c3929f951343a067a38211b7d6a, type: 2}
   enemies:
   - {fileID: 11400000, guid: 001ffca56e431404c8a5bae232bdf912, type: 2}
+  - {fileID: 11400000, guid: 001ffca56e431404c8a5bae232bdf912, type: 2}
+  - {fileID: 11400000, guid: 001ffca56e431404c8a5bae232bdf912, type: 2}
   satelliteMinRadius: 6
   satelliteMaxRadius: 9
   satelliteMinGravity: -4

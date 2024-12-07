@@ -844,9 +844,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _satelliteManager: {fileID: 50628889}
   _waveInterval: 60
-  _enemy1CountRange: {x: 1, y: 3}
-  _enemy2CountRange: {x: 0, y: 0}
-  _enemy3CountRange: {x: 0, y: 0}
+  _enemy1CountRange: {x: 2, y: 4}
+  _enemy2CountRange: {x: 1, y: 3}
+  _enemy3CountRange: {x: 2, y: 2}
 --- !u!1 &1215351388
 GameObject:
   m_ObjectHideFlags: 0
