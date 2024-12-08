@@ -81,7 +81,7 @@ namespace Code.Scripts
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _animator = GetComponent<Animator>();
             _inventory = GetComponent<Inventory>();
             health = GetComponent<Health>();
