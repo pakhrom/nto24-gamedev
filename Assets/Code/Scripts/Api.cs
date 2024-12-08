@@ -4,15 +4,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System;
+using Code.Scripts;
 using UnityEditor.PackageManager.Requests;
 
 public class Api : MonoBehaviour
 {
+    [SerializeField] private SaveManager _saveManager;
+    
+    private string _playerName;
+    private string _lastRequest;
+    
     readonly private string _uuid = "47d85299-f909-4ab5-9b5f-ca5fce2f597d";
     void Start()
     {
-        GetPlayerResources("user_with_apples");
+        if (!_saveManager) _saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
+
+        _playerName = _saveManager.GetSaveData().playerName;
+        GetAllPlayers();
+        
     }
+
+    public string GetLastRequest()
+    {
+        return !string.IsNullOrWhiteSpace(_lastRequest) ? _lastRequest : null;
+    }
+    
     public void CreatePlayer(string request)
     {
         StartCoroutine(Post("https://2025.nti-gamedev.ru/api/games/" + _uuid + "/players/", request));
@@ -88,6 +104,7 @@ public class Api : MonoBehaviour
                     Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
                 break;
                 case UnityWebRequest.Result.Success:
+                    _lastRequest = webRequest.downloadHandler.text;
                     Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                 break;
             }

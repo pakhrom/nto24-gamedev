@@ -13,7 +13,7 @@ namespace Code.Scripts
         public OreList oreList;
 
         [Header("Local Inventory properties")] 
-        [SerializeField] private int _maxCapacity;
+        [SerializeField] public int _maxCapacity;
         [SerializeField] private GameObject _inventoryFullMessage;
 
         public Dictionary<string, int> inventory;

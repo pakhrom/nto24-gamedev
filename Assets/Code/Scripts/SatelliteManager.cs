@@ -31,7 +31,7 @@ namespace Code.Scripts
         {
             oreObjects = new List<Transform>();
             _controller.enabled = false;
-            if (!_satellite) _satellite = ScriptableObject.CreateInstance<Satellite>();
+            _satellite = ScriptableObject.CreateInstance<Satellite>();
             _satellite.Init(_planet);
         }
 
@@ -61,7 +61,7 @@ namespace Code.Scripts
 
         public void PlayerDie()
         {
-            Debug.Log("Player died");
+            _sceneLoader.StartLoadingScene(1);
         }
     }
 }

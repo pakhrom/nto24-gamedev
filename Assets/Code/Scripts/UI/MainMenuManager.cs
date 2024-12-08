@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Code.Scripts.UI
 {
@@ -23,6 +25,7 @@ namespace Code.Scripts.UI
         {
             if (!string.IsNullOrWhiteSpace(_loginInput.text))
             {
+                
                 // TODO: if player exists on server, load his inventory, if not, create one
                 _saveManager.GetSaveData().playerName = _loginInput.text;
                 _saveManager.SaveGame();
@@ -39,5 +42,11 @@ namespace Code.Scripts.UI
         {
             _settingsPanelAnimator.SetTrigger(HideSettingsPanel);
         }
+    }
+
+    public class AllPlayers
+    {
+        // [{"name":"user_with_apples","resources":{"wheat":"34","apples":3}}]
+        // public List<Dictionary<>>;
     }
 }

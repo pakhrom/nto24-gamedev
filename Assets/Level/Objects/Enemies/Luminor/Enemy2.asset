@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Enemy2
   moveSpeed: 8
-  enemyPrefab: {fileID: 0}
+  enemyPrefab: {fileID: 5072342277834383195, guid: 2d5e8d566b068a049ace386993f729a9, type: 3}
   damage: 2
   minShootDistance: 9
   shootInterval: 0.7

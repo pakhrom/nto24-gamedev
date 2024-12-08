@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Public/PlanetSelectMenu.unity
     guid: ddd53d28fa193b440b7c5c32275427bd
+  - enabled: 1
+    path: Assets/Level/Scenes/Public/Shop.unity
+    guid: 8fb5316ae10771e4c8304438bd829672
+  - enabled: 1
+    path: Assets/Level/Scenes/Public/Luminor.unity
+    guid: 08499c2b78caf924da685978149e4b08
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1189fad06d98d3d42a5549bc7f04fa62, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4d83a9c25fcd90a49b19cc9c8191f343, type: 3}

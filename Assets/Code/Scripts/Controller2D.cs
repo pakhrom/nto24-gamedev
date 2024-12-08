@@ -100,6 +100,7 @@ namespace Code.Scripts
             _movementSpeed = saveData.movementSpeed;
             _miningTool.damage = saveData.miningToolDamage;
             health.SetHealth(saveData.health);
+            _inventory._maxCapacity = _saveManager.GetSaveData().inventoryMaxCapacity;
             
             _shootDelay = _weapon.ShootDelay();
             _shootTimer = _shootDelay;

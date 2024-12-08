@@ -31,7 +31,7 @@ namespace Code.Scripts
             
             _buttonTooltip.SetActive(false);
 
-            shootDelay = _weapon.ShootDelay();
+            shootDelay = _saveManager.GetSaveData().shootDelay;
             shootTimer = shootDelay;
             
             if (!_saveManager) _saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
@@ -87,6 +87,7 @@ namespace Code.Scripts
         
         private void OnTriggerExit2D(Collider2D other)
         {
+            if (!_player.gameObject) return;
             if (other.gameObject.GetInstanceID() == _player.gameObject.GetInstanceID())
             {
                 isPlayerNearby = false;

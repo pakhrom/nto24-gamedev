@@ -19,7 +19,6 @@ namespace Code.Scripts
         public float damage;
 
         [SerializeField] private float _mineDelay;
-        // TODO: Implement this
         
         [Header("Animations")]
         [SerializeField] private string _toolSwingTrigger;
