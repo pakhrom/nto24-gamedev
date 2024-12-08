@@ -15,6 +15,7 @@ namespace Code.Scripts.Debug_Scripts
         public void Reset()
         {
             File.Delete(Application.persistentDataPath + "/save/save_data");
+            Application.Quit();
         }
     }
 }

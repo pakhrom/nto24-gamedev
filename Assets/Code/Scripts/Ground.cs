@@ -12,7 +12,7 @@ namespace Code.Scripts
         [SerializeField] private Transform _ground1;
         [SerializeField] private Transform _ground2;
         [SerializeField] private Transform _ground3;
-        [SerializeField] private int _groundWidth;
+        [SerializeField] private float _groundWidth;
         
         private float _cameraWidth;
         private float _satellitePerimeter;

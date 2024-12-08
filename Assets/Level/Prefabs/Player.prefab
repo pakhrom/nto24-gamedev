@@ -94,7 +94,7 @@ MonoBehaviour:
   _cameraFollower: {fileID: 0}
   _cameraSizeWhenWave: 9
   _satelliteManager: {fileID: 0}
-  _waveInterval: 10
+  _waveInterval: 60
   _launchButton: {fileID: 0}
   _enemy1CountRange: {x: 2, y: 4}
   _enemy2CountRange: {x: 1, y: 3}

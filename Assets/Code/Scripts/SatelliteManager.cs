@@ -31,6 +31,7 @@ namespace Code.Scripts
         {
             oreObjects = new List<Transform>();
             _controller.enabled = false;
+            if (!_satellite) _satellite = ScriptableObject.CreateInstance<Satellite>();
             _satellite.Init(_planet);
         }
 
@@ -44,10 +45,10 @@ namespace Code.Scripts
             var distanceBetweenOres = _satellite.perimeter / (oreToSpawnCount + 1);
             for (int i = 0; i < oreToSpawnCount; ++i)
             { 
-                if (i * distanceBetweenOres <= 0f && 0f <= i * distanceBetweenOres + distanceBetweenOres - 1f) continue;
+                if (i * distanceBetweenOres <= 0f && 0f <= i * distanceBetweenOres + distanceBetweenOres - 2f) continue;
                 Ore oreToSpawn = _planet.ores[Random.Range(0, _planet.ores.Count)];
                 var ore = Instantiate(oreToSpawn.orePrefab,
-                    _startingPoint + new Vector3(i * distanceBetweenOres + Random.Range(0f, distanceBetweenOres - 1f),
+                    _startingPoint + new Vector3(i * distanceBetweenOres + Random.Range(0f, distanceBetweenOres - 2f),
                         0f, 0f), Quaternion.identity);
                 oreObjects.Add(ore.transform);
             }

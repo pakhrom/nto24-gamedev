@@ -29,10 +29,10 @@ namespace Code.Scripts.UI
 
         public void Launch()
         {
+            _rocket.enabled = false;
             _controllerInput.enabled = false;
             _playerRigidbody.simulated = false;
             _enemySpawner.enabled = false;
-            _rocket.enabled = false;
 
             var oreAmount = 0;
             var oreCost = 0;

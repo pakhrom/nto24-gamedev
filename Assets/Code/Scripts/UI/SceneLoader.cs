@@ -33,5 +33,10 @@ namespace Code.Scripts.UI
         {
             _loadingScreenAnimator.SetTrigger(DisableLoadingScreen);
         }
+
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
