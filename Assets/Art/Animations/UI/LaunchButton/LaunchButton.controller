@@ -214,9 +214,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: HideLaunchButton
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: IsWaveActive
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5727994217030486745}
   m_Solo: 0

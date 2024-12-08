@@ -33,6 +33,8 @@ namespace Code.Scripts
 
             shootDelay = _weapon.ShootDelay();
             shootTimer = shootDelay;
+            
+            if (!_saveManager) _saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         }
 
         private void Update()

@@ -114,6 +114,7 @@ namespace Code.Scripts
         private void Start()
         {
             _rigidbody.simulated = true;
+            if (!_saveManager) _saveManager = GameObject.Find("SaveManager").GetComponent<SaveManager>();
         }
         
         private void Update()

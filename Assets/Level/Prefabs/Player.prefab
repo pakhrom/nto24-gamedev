@@ -63,11 +63,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 25}
+  m_Offset: {x: 0, y: 20}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -91,8 +91,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a303c26ed01ded14fa2656d60448d48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cameraFollower: {fileID: 0}
+  _cameraSizeWhenWave: 9
   _satelliteManager: {fileID: 0}
-  _waveInterval: 60
+  _waveInterval: 10
+  _launchButton: {fileID: 0}
   _enemy1CountRange: {x: 2, y: 4}
   _enemy2CountRange: {x: 1, y: 3}
   _enemy3CountRange: {x: 2, y: 2}
@@ -646,6 +649,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1b742dff-728d-4f8e-b101-0f7f2eb4fec9
     m_ActionName: 'Player/Action[/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9207668449218249975}
+        m_TargetAssemblyTypeName: Code.Scripts.Controller2DInput, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd667b20-26a3-4d49-9ce5-6d8c648e805e
+    m_ActionName: 'Player/Exit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -663,6 +682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077f82c1d6278f345be7bc143050b45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _exitPromptAnimator: {fileID: 0}
+  _sceneLoader: {fileID: 0}
 --- !u!114 &3600615409682872197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7b993ddf8eb4f45834d26b5031174c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _launchButton: {fileID: 0}
   _saveManager: {fileID: 0}
   _input: {fileID: 9207668449218249975}
   _cameraFollower: {fileID: 0}
@@ -713,9 +735,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isRocketInventory: 0
-  _isGlobalInventory: 0
   oreList: {fileID: 11400000, guid: daa1ba0c6537bc4419afc37b79509552, type: 2}
   _maxCapacity: 10
+  _inventoryFullMessage: {fileID: 0}
 --- !u!114 &6951287142466903969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +768,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _healthSlider: {fileID: 0}
 --- !u!1 &6594828730245989233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,7 +1065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ff2a320d95fa0408107d0bcef3caef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _solidTag: Solid
+  _layer:
+    serializedVersion: 2
+    m_Bits: 64
+  _threshold: 0.05
 --- !u!1 &8171520824229225785
 GameObject:
   m_ObjectHideFlags: 0

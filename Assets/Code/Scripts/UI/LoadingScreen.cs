@@ -8,6 +8,7 @@ namespace Code.Scripts.UI
         
         public void OnLoadingScreenAnimationEnd()
         {
+            if (!_sceneLoader) _sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
             _sceneLoader.ChangeSceneToTarget();
         }
     }

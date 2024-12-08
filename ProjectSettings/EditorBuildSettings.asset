@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/Public/MainMenu.unity
     guid: 7857ee50c64e9e148a8a5952b2bc4a3f
   - enabled: 1
-    path: Assets/Level/Scenes/Public/LuminorSatellite.unity
-    guid: e2a0c69f437d59e4d9f3f11a1472c5da
+    path: Assets/Level/Scenes/Public/PlanetSelectMenu.unity
+    guid: ddd53d28fa193b440b7c5c32275427bd
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1189fad06d98d3d42a5549bc7f04fa62, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4d83a9c25fcd90a49b19cc9c8191f343, type: 3}
