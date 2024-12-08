@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Molybdenum
   m_EditorClassIdentifier: 
   name: Molybdenum
-  value: 0
+  value: 5
   orePrefab: {fileID: 4304232938265903857, guid: ff0b7a4ea923dee4a823cb99bdc870ab, type: 3}
   ingotPrefab: {fileID: 5981964462025976705, guid: 3ad2961cba43d10478e5ec354f24841f, type: 3}
-  minOreDropThreshold: 0
-  maxOreDropThreshold: 0
-  minDropCount: 0
-  maxDropCount: 0
-  minOrePerDrop: 0
-  maxOrePerDrop: 0
+  minOreDropThreshold: 2
+  maxOreDropThreshold: 5
+  minDropCount: 3
+  maxDropCount: 4
+  minOrePerDrop: 1
+  maxOrePerDrop: 3

@@ -1,4 +1,5 @@
 using System;
+using Code.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,12 +7,17 @@ namespace Code.Scripts
 {
     public class Controller2DInput : MonoBehaviour
     {
+        [SerializeField] private Animator _exitPromptAnimator;
+        [SerializeField] private SceneLoader _sceneLoader;
+        
         private Controller2D _controller;
         private bool _isJumpButtonPressed;
         private bool _isShootingButtonPressed;
         private bool _isMiningButtonPressed;
 
         [NonSerialized] public bool canInteract = true;
+        private static readonly int ShowExitPrompt = Animator.StringToHash("ShowExitPrompt");
+        private static readonly int HideExitPrompt = Animator.StringToHash("HideExitPrompt");
 
         public bool IsJumpButtonPressed => _isJumpButtonPressed;
 
@@ -83,6 +89,16 @@ namespace Code.Scripts
             if (context.performed)
             {
                 _controller.Action();
+            }
+        }
+
+        public void Exit(InputAction.CallbackContext context)
+        {
+            if (context.started) _exitPromptAnimator.SetTrigger(ShowExitPrompt);
+            if (context.performed)
+            {
+                _exitPromptAnimator.SetTrigger(HideExitPrompt);
+                _sceneLoader.StartLoadingScene(0);
             }
         }
         

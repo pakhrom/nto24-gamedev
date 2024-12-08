@@ -11,6 +11,7 @@ namespace Code.Scripts
         [SerializeField] private Transform _rocket;
         [SerializeField] private Transform _ground1;
         [SerializeField] private Transform _ground2;
+        [SerializeField] private Transform _ground3;
         [SerializeField] private int _groundWidth;
         
         private float _cameraWidth;
@@ -22,9 +23,11 @@ namespace Code.Scripts
             _camera = Camera.main;
             
             _ground1.localScale = new Vector3(_groundWidth, _ground1.localScale.y, _ground1.localScale.z);
-            _ground2.localScale = new Vector3(_groundWidth, _ground1.localScale.y, _ground1.localScale.z);
+            _ground2.localScale = new Vector3(_groundWidth, _ground2.localScale.y, _ground2.localScale.z);
+            _ground3.localScale = new Vector3(_groundWidth, _ground3.localScale.y, _ground3.localScale.z);
             
-            _ground2.position = _ground1.position + new Vector3(_groundWidth, 0f, 0f);
+            _ground2.position = _ground1.position - new Vector3(_groundWidth, 0f, 0f);
+            _ground3.position = _ground1.position + new Vector3(_groundWidth, 0f, 0f);
         }
 
         private void Update()
@@ -54,7 +57,7 @@ namespace Code.Scripts
             {
                 if (_camera.transform.position.x + _cameraWidth / 2f >= _ground1.position.x + _groundWidth / 2f)
                 {
-                    _ground2.position = _ground1.position + new Vector3(_groundWidth, 0f, 0f);
+                    _ground3.position = _ground1.position + new Vector3(_groundWidth, 0f, 0f);
                 }
                 else if (_camera.transform.position.x - _cameraWidth / 2f <= _ground1.position.x - _groundWidth / 2f)
                 {
@@ -66,11 +69,23 @@ namespace Code.Scripts
             {
                 if (_camera.transform.position.x + _cameraWidth / 2f >= _ground2.position.x + _groundWidth / 2f)
                 {
-                    _ground1.position = _ground2.position + new Vector3(_groundWidth, 0f, 0f);
+                    _ground3.position = _ground2.position + new Vector3(_groundWidth, 0f, 0f);
                 }
                 else if (_camera.transform.position.x - _cameraWidth / 2f <= _ground2.position.x - _groundWidth / 2f)
                 {
                     _ground1.position = _ground2.position - new Vector3(_groundWidth, 0f, 0f);
+                }
+            }
+            else if (_ground3.position.x - _groundWidth / 2f <= _player.position.x &&
+                     _player.position.x <= _ground3.position.x + _groundWidth / 2f)
+            {
+                if (_camera.transform.position.x + _cameraWidth / 2f >= _ground2.position.x + _groundWidth / 2f)
+                {
+                    _ground1.position = _ground2.position + new Vector3(_groundWidth, 0f, 0f);
+                }
+                else if (_camera.transform.position.x - _cameraWidth / 2f <= _ground2.position.x - _groundWidth / 2f)
+                {
+                    _ground2.position = _ground2.position - new Vector3(_groundWidth, 0f, 0f);
                 }
             }
             

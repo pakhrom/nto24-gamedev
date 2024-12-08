@@ -14,6 +14,7 @@ namespace Code.Scripts
 
         [Header("Animation properties")] 
         [SerializeField] private GameObject _buttonTooltip;
+        [SerializeField] private Animator _launchButton;
 
         [NonSerialized] public bool isPlayerNearby;
         [NonSerialized] public bool isPlayerInRocket;
@@ -21,6 +22,8 @@ namespace Code.Scripts
         [NonSerialized] public float shootDelay;
 
         private Inventory _inventory;
+        private static readonly int ShowLaunchButton = Animator.StringToHash("ShowLaunchButton");
+        private static readonly int HideLaunchButton = Animator.StringToHash("HideLaunchButton");
 
         private void Start()
         {
@@ -49,6 +52,8 @@ namespace Code.Scripts
                 }
             }
             
+            _launchButton.SetTrigger(ShowLaunchButton);
+            
             _weapon.enabled = true;
             _weaponPointer.enabled = true;
             
@@ -59,6 +64,8 @@ namespace Code.Scripts
 
         public void Exit()
         {
+            _launchButton.SetTrigger(HideLaunchButton);
+            
             _weapon.enabled = false;
             _weaponPointer.enabled = false;
             

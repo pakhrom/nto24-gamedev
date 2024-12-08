@@ -22,11 +22,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c562a638116b194ca5bde886f8f1251, type: 2}
   - {fileID: 11400000, guid: 3e6b8129e79b3364ba8209da6bd7a1b1, type: 2}
   enemies: []
-  satelliteMinRadius: 0
-  satelliteMaxRadius: 0
-  satelliteMinGravity: 0
-  satelliteMaxGravity: 0
-  satelliteMinOreCount: 0
-  satelliteMaxOreCount: 0
+  satelliteMinPerimeter: 50
+  satelliteMaxPerimeter: 90
+  satelliteMinGravity: -5
+  satelliteMaxGravity: -18
+  satelliteMinOreCount: 3
+  satelliteMaxOreCount: 7
   satelliteMinEnemyWaveInterval: 0
   satelliteMaxEnemyWaveInterval: 0

@@ -7,8 +7,11 @@ namespace Code.Scripts
 {
     public class EnemySpawner : MonoBehaviour
     {
+        [SerializeField] private CameraFollower _cameraFollower;
+        [SerializeField] private float _cameraSizeWhenWave;
         [SerializeField] private SatelliteManager _satelliteManager;
         [SerializeField] private float _waveInterval;
+        [SerializeField] private Animator _launchButton;
 
         [Header("Wave")] 
         [SerializeField] private Vector2 _enemy1CountRange;
@@ -22,11 +25,14 @@ namespace Code.Scripts
         private float _waveTimer;
         private int _waveCount;
         private int _enemyCount;
+        private float _defaultCameraSize;
+        private static readonly int IsWaveActive = Animator.StringToHash("IsWaveActive");
 
         private void Start()
         {
             _collider = GetComponent<BoxCollider2D>();
             _planet = _satelliteManager.GetPlanet();
+            _defaultCameraSize = _cameraFollower.cameraSize;
 
             _enemyCount = 0;
         }
@@ -39,6 +45,9 @@ namespace Code.Scripts
             }
             else if (_enemyCount == 0)
             {
+                _cameraFollower.cameraSize = _defaultCameraSize;
+                _cameraFollower.SetOffsetY(0f);
+                _launchButton.SetBool(IsWaveActive, false);
                 _isWaveActive = false;
             }
             if (_waveTimer >= _waveInterval)
@@ -70,7 +79,10 @@ namespace Code.Scripts
                     _enemyCount += 1;
                 }
 
+                _cameraFollower.cameraSize = _cameraSizeWhenWave;
+                _cameraFollower.SetOffsetY(5f);
                 _waveCount = Math.Min(_waveCount + 1, 2);
+                _launchButton.SetBool(IsWaveActive, true);
                 _isWaveActive = true;
                 _waveTimer = 0f;
             }

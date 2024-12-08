@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Code.Scripts.ScriptableObjects;
@@ -7,9 +8,10 @@ namespace Code.Scripts
 {
     public class SaveManager : MonoBehaviour
     {
-        [SerializeField] private SaveData _defaultSaveData;
+        [SerializeField] private Planet _defaultPlanet;
         
         private SaveData _saveData;
+        [NonSerialized] public Inventory tempInventory;
         
         private static SaveManager _instance;
 
@@ -25,7 +27,7 @@ namespace Code.Scripts
             }
             DontDestroyOnLoad(this);
 
-            _saveData = _defaultSaveData;
+            _saveData = ScriptableObject.CreateInstance<SaveData>();
             LoadGame();
         }
 
@@ -52,7 +54,8 @@ namespace Code.Scripts
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/save");
 
-            _saveData = _defaultSaveData;
+            _saveData = ScriptableObject.CreateInstance<SaveData>();
+            _saveData.currentPlanet = _defaultPlanet;
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             FileStream file = File.Create(Application.persistentDataPath + "/save/save_data");
             var json = JsonUtility.ToJson(_saveData);

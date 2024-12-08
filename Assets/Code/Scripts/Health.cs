@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace Code.Scripts
 {
@@ -10,6 +11,7 @@ namespace Code.Scripts
         [SerializeField] private bool _destroyOnDeath;
         [SerializeField] private bool _callEventOnDeath;
         [SerializeField] private UnityEvent _eventOnDeath;
+        [SerializeField] private Slider _healthSlider;
         
         private float _health;
         private float _damageMultiplier = 1f;
@@ -26,6 +28,7 @@ namespace Code.Scripts
         public void DealDamage(float damage)
         {
             _health -= damage * _damageMultiplier;
+            if (_healthSlider) _healthSlider.value = _health / _defaultHealth;
             if (_health <= 0f) Die();
         }
 

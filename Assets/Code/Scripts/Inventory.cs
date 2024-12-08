@@ -9,12 +9,12 @@ namespace Code.Scripts
     public class Inventory : MonoBehaviour
     {
         [FormerlySerializedAs("_isLocal")] [SerializeField] private bool _isRocketInventory;
-        private bool _isGlobalInventory;
 
         public OreList oreList;
 
         [Header("Local Inventory properties")] 
         [SerializeField] private int _maxCapacity;
+        [SerializeField] private GameObject _inventoryFullMessage;
 
         public Dictionary<string, int> inventory;
         private int _currentFullness;
@@ -27,21 +27,14 @@ namespace Code.Scripts
 
             foreach (var ore in oreList.ores)
             {
-                if (!_isGlobalInventory)
-                {
-                    inventory.Add(ore.name, 0);
-                }
-                else
-                {
-                    // Load from save
-                }
+                inventory.Add(ore.name, 0);
             }
         }
 
         public void AddOre(OreIngot oreIngot, int amount)
         {
             int amountToAdd = 0;
-            if (!_isGlobalInventory && !_isRocketInventory)
+            if (!_isRocketInventory)
             {
                 if (_currentFullness == _maxCapacity) return;
                 amountToAdd = Math.Min(amount, _maxCapacity - _currentFullness);
@@ -54,14 +47,16 @@ namespace Code.Scripts
                 amountToAdd = amount;
                 inventory[oreIngot.ore.name] += amountToAdd;
             }
+
+            if (_inventoryFullMessage && _currentFullness == _maxCapacity) _inventoryFullMessage.SetActive(true);
             
-            Debug.Log($"Added {amountToAdd} {oreIngot.ore.name} ore to Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+            Debug.Log($"Added {amountToAdd} {oreIngot.ore.name} ore to Inventory. Rocket: {_isRocketInventory}.");
         }
         
         public void AddOre(Ore ore, int amount)
         {
             int amountToAdd = 0;
-            if (!_isGlobalInventory && !_isRocketInventory)
+            if (!_isRocketInventory)
             {
                 if (_currentFullness == _maxCapacity) return;
                 amountToAdd = Math.Min(amount, _maxCapacity - _currentFullness);
@@ -74,32 +69,38 @@ namespace Code.Scripts
                 inventory[ore.name] += amountToAdd;
             }
             
-            Debug.Log($"Added {amountToAdd} {ore.name} ore to Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+            if (_inventoryFullMessage && _currentFullness == _maxCapacity) _inventoryFullMessage.SetActive(true);
+            
+            Debug.Log($"Added {amountToAdd} {ore.name} ore to Inventory. Rocket: {_isRocketInventory}.");
         }
 
         public void RemoveOre(OreIngot oreIngot, int amount)
         {
             if (inventory[oreIngot.ore.name] - amount < 0)
             {
-                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Rocket: {_isRocketInventory}.");
                 return;
             }
             
+            if (_inventoryFullMessage && _currentFullness != _maxCapacity) _inventoryFullMessage.SetActive(false);
+            
             inventory[oreIngot.ore.name] -= amount;
-            Debug.Log($"Removed {amount} {oreIngot.ore.name} ore from Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+            Debug.Log($"Removed {amount} {oreIngot.ore.name} ore from Inventory. Rocket: {_isRocketInventory}.");
         }
         
         public void RemoveOre(Ore ore, int amount)
         {
             if (inventory[ore.name] - amount < 0)
             {
-                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+                Debug.LogError($"Tried to remove more ore than there is in the Inventory. Rocket: {_isRocketInventory}.");
                 return;
             }
             
+            if (_inventoryFullMessage && _currentFullness != _maxCapacity) _inventoryFullMessage.SetActive(false);
+            
             inventory[ore.name] -= amount;
-            if (!_isRocketInventory && !_isGlobalInventory) _currentFullness -= amount;
-            Debug.Log($"Removed {amount} {ore.name} ore from Inventory. Rocket: {_isRocketInventory}. Global: {_isGlobalInventory}.");
+            if (!_isRocketInventory) _currentFullness -= amount;
+            Debug.Log($"Removed {amount} {ore.name} ore from Inventory. Rocket: {_isRocketInventory}.");
         }
         
         public void RemoveOre(int oreID, int amount)
@@ -109,6 +110,8 @@ namespace Code.Scripts
                 Debug.LogError($"Tried to remove more ore than there is in the Inventory. Local: {_isRocketInventory}");
                 return;
             }
+            
+            if (_inventoryFullMessage && _currentFullness != _maxCapacity) _inventoryFullMessage.SetActive(false);
             
             inventory[oreList.ores[oreID].name] -= amount;
             Debug.Log($"Removed {amount} {oreList.ores[oreID].name} ore from Inventory. Local: {_isRocketInventory}");

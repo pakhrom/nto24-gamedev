@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Code.Scripts
 {
     public class Controller2D : MonoBehaviour
     {
+        [SerializeField] private Button _launchButton;
         [SerializeField] private SaveManager _saveManager;
         [SerializeField] private Controller2DInput _input;
         [SerializeField] private CameraFollower _cameraFollower;
@@ -289,9 +291,8 @@ namespace Code.Scripts
             {
                 Switch();
 
+                _launchButton.interactable = true;
                 _cameraFollower.SetTarget(_rocket.transform);
-                _cameraFollower.SetOffsetY(5f);
-                _cameraFollower.cameraSize = 9;
 
                 _rocket.Enter();
             }
@@ -299,7 +300,8 @@ namespace Code.Scripts
             {
                 Switch();
                 
-                _cameraFollower.RestoreDefaults();
+                _launchButton.interactable = false;
+                _cameraFollower.SetTarget(transform);
                 
                 _rocket.Exit();
             }

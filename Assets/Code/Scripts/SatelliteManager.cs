@@ -12,7 +12,7 @@ namespace Code.Scripts
         [SerializeField] private Planet _planet;
         [SerializeField] private Satellite _satellite;
         [SerializeField] private Controller2D _controller;
-        [SerializeField] private LoadingScreen _loadingScreen;
+        [SerializeField] private SceneLoader _sceneLoader;
 
         [SerializeField] private Ground _ground;
 
@@ -54,7 +54,8 @@ namespace Code.Scripts
             
             isLoadingDone = true;
             _controller.enabled = true;
-            // TODO: Disable loading screen
+            
+            _sceneLoader.HideLoadingScene();
         }
 
         public void PlayerDie()
